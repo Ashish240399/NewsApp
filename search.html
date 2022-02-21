@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #main{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        width:95%;
+        gap:10px;
+        margin: auto;
+        background-color: blanchedalmond;
+      }
+      #main>div{
+        width:100%;
+        font: 400;
+        font-family: sans-serif;
+        
+        padding:10px;
+      }
+      #main>div>img{
+        width:100%;
+        height:230px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="main">
+      <!--No need to add sidebar here, directly display search results here only-->
+
+      <!-- show headline, description and image -->
+    </div>
+  </body>
+</html>
+<script type="module">
+  // import sidebar from "./components/sidebar.js";
+  import storeSearchterm from "./scripts/search.js";
+  import {appendArticles} from "./scripts/main.js";
+  var div=document.querySelector("#main");
+  let article=localStorage.getItem("article");
+  console.log(article);
+  let url=`https://shrouded-earth-23381.herokuapp.com/api/search/?q=${article}`;
+  let data=await storeSearchterm(url);
+  console.log(data);
+  appendArticles(data,div);
+</script>
